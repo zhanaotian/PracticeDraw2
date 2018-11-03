@@ -11,6 +11,11 @@ import android.view.View;
 
 import com.hencoder.hencoderpracticedraw2.R;
 
+/**
+ * @author cszdz
+ * 使用 paint.setXfermode() 设置不同的结合绘制效果
+ * 别忘了用 canvas.saveLayer() 开启 off-screen buffer
+ */
 public class Practice08XfermodeView extends View {
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     Bitmap bitmap1;
@@ -36,11 +41,7 @@ public class Practice08XfermodeView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-        // 使用 paint.setXfermode() 设置不同的结合绘制效果
-
-        // 别忘了用 canvas.saveLayer() 开启 off-screen buffer
-
+        canvas.saveLayer(null,null,Canvas.ALL_SAVE_FLAG);
         canvas.drawBitmap(bitmap1, 0, 0, paint);
         // 第一个：PorterDuff.Mode.SRC
         canvas.drawBitmap(bitmap2, 0, 0, paint);
@@ -54,5 +55,6 @@ public class Practice08XfermodeView extends View {
         canvas.drawBitmap(bitmap2, 0, bitmap1.getHeight() + 20, paint);
 
         // 用完之后使用 canvas.restore() 恢复 off-screen buffer
+        canvas.restore();
     }
 }
