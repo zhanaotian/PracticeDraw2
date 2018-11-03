@@ -8,6 +8,9 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+/**
+ * @author cszdz
+ */
 public class Practice11StrokeMiterView extends View {
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     Path path = new Path();
