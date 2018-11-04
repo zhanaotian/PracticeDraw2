@@ -2,11 +2,16 @@ package com.hencoder.hencoderpracticedraw2.practice;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+/**
+ * @author paihaozhan
+ * 使用 Paint.setShadowLayer() 设置阴影
+ */
 public class Practice13ShadowLayerView extends View {
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -23,13 +28,12 @@ public class Practice13ShadowLayerView extends View {
     }
 
     {
-        // 使用 Paint.setShadowLayer() 设置阴影
+        paint.setShadowLayer(10,3,3, Color.BLUE);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         paint.setTextSize(120);
         canvas.drawText("Hello HenCoder", 50, 200, paint);
     }

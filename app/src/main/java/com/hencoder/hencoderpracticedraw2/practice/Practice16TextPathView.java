@@ -8,38 +8,40 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+/**
+ * @author paihaozhan
+ * 使用 Paint.getTextPath() 来获取文字的 Path
+ */
 public class Practice16TextPathView extends View {
-    Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    Paint pathPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    Path textPath = new Path();
-    String text = "Hello HenCoder";
+  Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+  Paint pathPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+  Path textPath = new Path();
+  String text = "Hello HenCoder";
 
-    public Practice16TextPathView(Context context) {
-        super(context);
-    }
+  public Practice16TextPathView(Context context) {
+    super(context);
+  }
 
-    public Practice16TextPathView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
+  public Practice16TextPathView(Context context, @Nullable AttributeSet attrs) {
+    super(context, attrs);
+  }
 
-    public Practice16TextPathView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
+  public Practice16TextPathView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    super(context, attrs, defStyleAttr);
+  }
 
-    {
-        paint.setTextSize(120);
+  {
+    paint.setTextSize(120);
+    paint.getTextPath(text, 0, text.length(), 50, 400, textPath);
+    pathPaint.setStyle(Paint.Style.STROKE);
+  }
 
-        // 使用 Paint.getTextPath() 来获取文字的 Path
+  @Override
+  protected void onDraw(Canvas canvas) {
+    super.onDraw(canvas);
 
-        pathPaint.setStyle(Paint.Style.STROKE);
-    }
+    canvas.drawText(text, 50, 200, paint);
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-
-        canvas.drawText(text, 50, 200, paint);
-
-        canvas.drawPath(textPath, pathPaint);
-    }
+    canvas.drawPath(textPath, pathPaint);
+  }
 }
